@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
-    
+    private int hp = 3;
+    private float fevertime = 5;
+
     private const float LANE_DISTANCE = 6.0f;
     private const float TURN_SPEED = 0.025f;
 
@@ -158,12 +161,13 @@ public class PlayerController : MonoBehaviour
         //anim.SetTrigger("Hit"); 
         //만약 HP가 0으로 되었다면 Death 애니메이션 출력과 동시에 
         //bool _isRunning 을 false로 바꿔준다. 
+        hp--;
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    private void OnCollisionEnter(Collision collision)
     {
         //장애물은 Tag를 Obstacle 로 지정하겠습니다.
-        switch (hit.gameObject.tag)
+        switch (collision.gameObject.tag)
         {
             case "Obstacle":
                 Crash();
