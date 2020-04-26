@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     
     private const float LANE_DISTANCE = 6.0f;
     private const float TURN_SPEED = 0.025f;
-    
+
+    private bool _isRunning = false;
 
     //Movement (임시)
     private CharacterController Controller;
@@ -16,7 +17,12 @@ public class PlayerController : MonoBehaviour
     private float Gravity = 12.0f;
     private float VerticalVelocity;
     [SerializeField]
-    private float MoveSpeed = 5.0f;
+    private float MoveSpeed = 5.24f;
+
+    private float MoveSpeedIncreaseLastTick;
+    private float MoveSpeedIncreaseTime = 15.0f;     //속도 증가 쿨타임
+    private float MoveSpeedIncreaseAmount = 1.2f;    //가속도
+    
     private float LaneMoveSpeed = 30.0f;
     private int DesiredLane = 1; // 0 = 좌측, 1 = 중앙, 2 = 우측
 
@@ -28,6 +34,22 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (_isRunning == false)
+        {
+            return;
+        }
+
+        if (Time.time - MoveSpeedIncreaseLastTick > MoveSpeedIncreaseTime)
+        {
+            MoveSpeedIncreaseLastTick = Time.time;
+            MoveSpeed += MoveSpeedIncreaseAmount;
+        }
+        
+        if (MobileInput.Instance.tap && _isRunning == false)
+        {
+            _isRunning = true;
+        }
+        
         if (MobileInput.Instance.swipeLeft)
         {
             MoveLane(false);
@@ -63,7 +85,7 @@ public class PlayerController : MonoBehaviour
             {
                 //Slide
                 StartSliding();
-                //Invoke("StopSliding", 1.0f);
+                Invoke("StopSliding", 1.0f);
             }
         }
         else
@@ -112,24 +134,35 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    public void StartRunning()
+    {
+        _isRunning = true;
+    }
+
     private void StartSliding()
     {
         //애니메이션
+        Controller.height /= 2;
+        Controller.center = new Vector3(Controller.center.x , Controller.center.y / 2, Controller.center.z);
     }
     
     private void StopSliding()
     {
         //애니메이션
+        Controller.height *= 2;
+        Controller.center = new Vector3(Controller.center.x , Controller.center.y * 2, Controller.center.z);
     }
 
     private void Crash()
     {
         //anim.SetTrigger("Hit"); 
-        //만약 HP가 0으로 되었다면 Death 애니메이션
+        //만약 HP가 0으로 되었다면 Death 애니메이션 출력과 동시에 
+        //bool _isRunning 을 false로 바꿔준다. 
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        //장애물은 Tag를 Obstacle 로 지정하겠습니다.
         switch (hit.gameObject.tag)
         {
             case "Obstacle":
