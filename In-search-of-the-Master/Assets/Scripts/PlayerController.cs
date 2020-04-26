@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
     private int hp = 3;
     private float fevertime = 5;
-    
+
     private const float LANE_DISTANCE = 6.0f;
     private const float TURN_SPEED = 0.025f;
 
