@@ -11,12 +11,13 @@ public class BtnManager : MonoBehaviour
     
     bool isPause, isRoad;
     public float countNum;
-    float startTime = Time.realtimeSinceStartup;
+    float startTime;
     float lastTime;
 
     private void Start()
     {
         isPause = false; isRoad = false;
+        startTime = Time.realtimeSinceStartup;
     }
 
     private void Update()
