@@ -177,8 +177,7 @@ public class PlayerController : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Obstacle":
-                if (ItemManager.Instance.isShield == true)
-                    Crash();
+                Crash();
                 break;
             case "Item":
                 ItemManager.Instance.CurrentItem(collision.gameObject.name);

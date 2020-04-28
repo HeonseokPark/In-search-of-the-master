@@ -24,7 +24,6 @@ public class ItemManager : MonoBehaviour
     private const float LANE_DISTANCE = 6.0f;
 
     public float[] distances;
-    public bool isShield;
 
     public float startTime = 0;
     public float lastTime; //아이템 지속시간
@@ -60,10 +59,10 @@ public class ItemManager : MonoBehaviour
                     startTime = 0f;
                     player.moveSpeed /= 2f;
                     itemlist = ItemList.None;
-                    isShield = false;
                 }
                 break;
             case ItemList.potion:
+                itemlist = ItemList.None;
                 break;
             default:
                 break;
@@ -84,14 +83,13 @@ public class ItemManager : MonoBehaviour
             case "Shield":
                 itemlist = ItemList.Shield;
                 lastTime = 3f;
-                isShield = true;
                 player.moveSpeed *= 2f;
                 break;
             case "Potion":
                 itemlist = ItemList.potion;
                 if (player.Hp < 3)
                     player.Hp += 1;
-                itemlist = ItemList.None;
+                lastTime = 0f;
                 break;
             default:
                 lastTime = 0f;
