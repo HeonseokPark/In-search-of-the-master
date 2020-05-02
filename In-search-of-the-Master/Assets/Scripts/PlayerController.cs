@@ -4,9 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
+
 public class PlayerController : MonoBehaviour
 {
     private int hp = 3;
+    public int Hp {
+        set { hp = value; }
+        get { return hp; }
+    }
     private float fevertime = 5;
 
     private const float LANE_DISTANCE = 6.0f;
@@ -21,6 +27,10 @@ public class PlayerController : MonoBehaviour
     private float VerticalVelocity;
     [SerializeField]
     private float MoveSpeed = 5.24f;
+    public float moveSpeed {
+        set { MoveSpeed = value; }
+        get { return MoveSpeed; }
+    }
 
     private float MoveSpeedIncreaseLastTick;
     private float MoveSpeedIncreaseTime = 15.0f;     //속도 증가 쿨타임
@@ -28,7 +38,6 @@ public class PlayerController : MonoBehaviour
     
     private float LaneMoveSpeed = 30.0f;
     private int DesiredLane = 1; // 0 = 좌측, 1 = 중앙, 2 = 우측
-
 
     private void Start()
     {
@@ -164,14 +173,31 @@ public class PlayerController : MonoBehaviour
         hp--;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         //장애물은 Tag를 Obstacle 로 지정하겠습니다.
-        switch (collision.gameObject.tag)
+        switch (hit.gameObject.tag)
         {
             case "Obstacle":
-                Crash();
+                if (ItemManager.Instance.isShield == true)
+                    Crash();
+                break;
+            case "Item":
+                ItemManager.Instance.CurrentItem(hit.gameObject.name);
+                Destroy(hit.gameObject);
                 break;
         }
+        
+        //switch (collision.gameObject.tag)
+        //{
+        //    case "Obstacle":
+        //        if (ItemManager.Instance.isShield == true)
+        //            Crash();
+        //        break;
+        //    case "Item":
+        //        ItemManager.Instance.CurrentItem(collision.gameObject.name);
+        //        Destroy(collision.gameObject);
+        //        break;
+        //}
     }
 }
