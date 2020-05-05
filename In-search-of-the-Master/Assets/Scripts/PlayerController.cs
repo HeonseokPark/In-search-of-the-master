@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void MoveLane(bool GoingRight)
+    private void MoveLane(bool GoingRight) 
     {
         DesiredLane += (GoingRight) ? 1 : -1;
         DesiredLane = Mathf.Clamp(DesiredLane, 0, 2);
