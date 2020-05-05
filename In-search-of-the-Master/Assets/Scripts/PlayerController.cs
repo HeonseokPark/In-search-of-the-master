@@ -46,6 +46,66 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        GameStart();
+    }
+
+    public void StartRunning()
+    {
+        _isRunning = true;
+    }
+
+    private void StartSliding()
+    {
+        //애니메이션
+        Controller.height /= 2;
+        Controller.center = new Vector3(Controller.center.x , Controller.center.y / 2, Controller.center.z);
+    }
+    
+    private void StopSliding()
+    {
+        //애니메이션
+        Controller.height *= 2;
+        Controller.center = new Vector3(Controller.center.x , Controller.center.y * 2, Controller.center.z);
+    }
+
+    private void Crash()
+    {
+        //anim.SetTrigger("Hit"); 
+        //만약 HP가 0으로 되었다면 Death 애니메이션 출력과 동시에 
+        //bool _isRunning 을 false로 바꿔준다. 
+        hp--;
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        //장애물은 Tag를 Obstacle 로 지정하겠습니다.
+        switch (hit.gameObject.tag)
+        {
+            case "Obstacle":
+                if (ItemManager.Instance.isShield == true)
+                    Crash();
+                break;
+            case "Item":
+                ItemManager.Instance.CurrentItem(hit.gameObject.name);
+                Destroy(hit.gameObject);
+                break;
+        }
+        
+        //switch (collision.gameObject.tag)
+        //{
+        //    case "Obstacle":
+        //        if (ItemManager.Instance.isShield == true)
+        //            Crash();
+        //        break;
+        //    case "Item":
+        //        ItemManager.Instance.CurrentItem(collision.gameObject.name);
+        //        Destroy(collision.gameObject);
+        //        break;
+        //}
+    }
+
+    private void GameStart()
+    {
         if (_isRunning == false)
         {
             return;
@@ -125,7 +185,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void MoveLane(bool GoingRight) 
+    private void MoveLane(bool GoingRight)
     {
         DesiredLane += (GoingRight) ? 1 : -1;
         DesiredLane = Mathf.Clamp(DesiredLane, 0, 2);
@@ -144,60 +204,5 @@ public class PlayerController : MonoBehaviour
         }
 
         return false;
-    }
-
-    public void StartRunning()
-    {
-        _isRunning = true;
-    }
-
-    private void StartSliding()
-    {
-        //애니메이션
-        Controller.height /= 2;
-        Controller.center = new Vector3(Controller.center.x , Controller.center.y / 2, Controller.center.z);
-    }
-    
-    private void StopSliding()
-    {
-        //애니메이션
-        Controller.height *= 2;
-        Controller.center = new Vector3(Controller.center.x , Controller.center.y * 2, Controller.center.z);
-    }
-
-    private void Crash()
-    {
-        //anim.SetTrigger("Hit"); 
-        //만약 HP가 0으로 되었다면 Death 애니메이션 출력과 동시에 
-        //bool _isRunning 을 false로 바꿔준다. 
-        hp--;
-    }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        //장애물은 Tag를 Obstacle 로 지정하겠습니다.
-        switch (hit.gameObject.tag)
-        {
-            case "Obstacle":
-                if (ItemManager.Instance.isShield == true)
-                    Crash();
-                break;
-            case "Item":
-                ItemManager.Instance.CurrentItem(hit.gameObject.name);
-                Destroy(hit.gameObject);
-                break;
-        }
-        
-        //switch (collision.gameObject.tag)
-        //{
-        //    case "Obstacle":
-        //        if (ItemManager.Instance.isShield == true)
-        //            Crash();
-        //        break;
-        //    case "Item":
-        //        ItemManager.Instance.CurrentItem(collision.gameObject.name);
-        //        Destroy(collision.gameObject);
-        //        break;
-        //}
     }
 }

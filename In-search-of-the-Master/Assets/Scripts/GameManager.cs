@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public float Score;
     public Text CoinText;
     public float Coin;
+    public int CoinPlus = 1;
 
     public float ScoreTimer;
     public float IncreaseTime;
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
 
     public void GetCoin()
     {
-        Coin += 1;
+        Coin += CoinPlus;
     }
     
     public void UpdateScore()

@@ -12,9 +12,10 @@ public class ItemManager : MonoBehaviour
     enum ItemList
     {
         None,
-        Magnet,
-        Shield,
-        potion,
+        Item_Magnatic,
+        Item_GodMode,
+        Item_DoubleCoin,
+        Item_Heal,
     }
 
     private ItemList itemlist;
@@ -25,16 +26,23 @@ public class ItemManager : MonoBehaviour
 
     public float[] distances;
     public bool isShield;
-
     public float startTime = 0;
     public float lastTime; //아이템 지속시간
+
+    private int itemAmount = 99;
     private float speed = 10f; //날아가는 속도
     private Vector3 position; //플레이어 위치
     private string currentItem; //현재 아이템
+    //아이템 가격들
+    private int ItemPrice_Magnatic = 500;
+    private int ItemPrice_GodMode = 1000;
+    private int ItemPrice_DoubleCoin = 400;
+    private int ItemPrice_Heal = 500;
 
     private void Start()
     {
         Instance = this;
+        lastTime = 3f;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         itemlist = ItemList.None;
     }
@@ -44,7 +52,7 @@ public class ItemManager : MonoBehaviour
         switch (itemlist)
         {
             //자석
-            case ItemList.Magnet:
+            case ItemList.Item_Magnatic:
                 startTime += Time.deltaTime;
                 MagnetEffect();
                 if (lastTime <= startTime)
@@ -53,17 +61,26 @@ public class ItemManager : MonoBehaviour
                     itemlist = ItemList.None;
                 }
                 break;
-            case ItemList.Shield:
+            case ItemList.Item_GodMode:
                 startTime += Time.deltaTime;
                 if (lastTime <= startTime)
                 {
                     startTime = 0f;
                     player.moveSpeed /= 2f;
-                    itemlist = ItemList.None;
                     isShield = false;
+                    itemlist = ItemList.None;
                 }
                 break;
-            case ItemList.potion:
+            case ItemList.Item_Heal:
+                break;
+            case ItemList.Item_DoubleCoin:
+                startTime += Time.deltaTime;
+                if (lastTime <= startTime)
+                {
+                    startTime = 0f;
+                    GameManager.Instance.CoinPlus = 1;
+                    itemlist = ItemList.None;
+                }
                 break;
             default:
                 break;
@@ -77,24 +94,27 @@ public class ItemManager : MonoBehaviour
         switch (currentItem)
         {
             //자석
-            case "Magnet":
-                itemlist = ItemList.Magnet;
-                lastTime = 5f;
+            case "Item_Magnatic":
+                itemlist = ItemList.Item_Magnatic;
                 break;
-            case "Shield":
-                itemlist = ItemList.Shield;
-                lastTime = 3f;
-                isShield = true;
-                player.moveSpeed *= 2f;
+            case "Item_GodMode":
+                itemlist = ItemList.Item_GodMode;
+                isShield = true; //무적
+                player.moveSpeed *= 2f; //이동속도 두배
                 break;
-            case "Potion":
-                itemlist = ItemList.potion;
+            case "Item_Heal":
+                itemlist = ItemList.Item_Heal;
                 if (player.Hp < 3)
-                    player.Hp += 1;
+                    player.Hp += 1; //회복
                 itemlist = ItemList.None;
                 break;
+            case "Item_DoubleCoin":
+                itemlist = ItemList.Item_DoubleCoin;
+                GameManager.Instance.CoinPlus = 2;
+                break;
             default:
-                lastTime = 0f;
+                startTime = 0f;
+                itemlist = ItemList.None;
                 break;
         }
     }
