@@ -10,7 +10,7 @@ public class IncreaseCoin : MonoBehaviour
         if (other.tag == "Player")
         {
             GameManager.Instance.GetCoin();
-            Destroy(gameObject, 1.5f);
+            Destroy(gameObject, 0.0f);
         }
     }
 }
