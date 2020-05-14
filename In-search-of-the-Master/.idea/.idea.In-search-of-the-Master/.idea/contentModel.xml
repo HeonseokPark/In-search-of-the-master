@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\박헌석\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\박헌석\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_In-search-of-the-Master.1971248834.00" t="ExcludeRecursive" />
+    <e p="D:\Github_Upload\In-search-of-the-master\In-search-of-the-master" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Plugins" t="Include">
+          <e p="Inspector Gadgets" t="Include">
+            <e p="Inspector" t="Include">
+              <e p="BlendShapeViewer.cs" t="Include" />
+              <e p="CommentAsset.cs" t="Include" />
+              <e p="CommentComponent.cs" t="Include" />
+            </e>
+            <e p="InspectorGadgets.asmdef" t="Include" />
+            <e p="InspectorGadgets.Lite.xml" t="Include" />
+            <e p="Misc" t="Include">
+              <e p="AssemblyInfo.cs" t="Include" />
+              <e p="Shortcut.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="BtnManager.cs" t="Include" />
+          <e p="CameraController.cs" t="Include" />
+          <e p="GameManager.cs" t="Include" />
+          <e p="IncreaseCoin.cs" t="Include" />
+          <e p="ItemManager.cs" t="Include" />
+          <e p="LevelManager.cs" t="Include" />
+          <e p="MobileInput.cs" t="Include" />
+          <e p="Piece.cs" t="Include" />
+          <e p="PieceSpawner.cs" t="Include" />
+          <e p="PlayerController.cs" t="Include" />
+          <e p="Segment.cs" t="Include" />
+        </e>
+        <e p="VertexColorFarmAnimals" t="Include">
+          <e p="Shaders" t="Include">
+            <e p="VertexColorUnlit.shader" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="In-search-of-the-Master.sln" t="IncludeFlat" />
+      <e p="InspectorGadgets.csproj" t="IncludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
