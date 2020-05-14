@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private float fevertime = 5;
 
     private const float LANE_DISTANCE = 6.0f;
-    private const float TURN_SPEED = 0.01f;
+    private const float TURN_SPEED = 0.025f;
 
     private bool _isRunning = false;
 
