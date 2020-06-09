@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Coin
   - Item
+  - Frisbee
   layers:
   - Default
   - TransparentFX

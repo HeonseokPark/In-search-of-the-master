@@ -15,18 +15,18 @@ public class PlayerController : MonoBehaviour
     }
     private float fevertime = 5;
 
-    private const float LANE_DISTANCE = 6.0f;
-    private const float TURN_SPEED = 0.025f;
+    private const float LANE_DISTANCE = 0.6f;
+    private const float TURN_SPEED = 0.0f;
 
     private bool _isRunning = false;
 
     //Movement (임시)
     private CharacterController Controller;
-    private float JumpForce = 8.0f;
-    private float Gravity = 12.0f;
+    private float JumpForce = 2.0f;
+    private float Gravity = 2.0f;
     private float VerticalVelocity;
     [SerializeField]
-    private float MoveSpeed = 5.24f;
+    private float MoveSpeed = 1.0f;
     public float moveSpeed {
         set { MoveSpeed = value; }
         get { return MoveSpeed; }
@@ -36,17 +36,26 @@ public class PlayerController : MonoBehaviour
     private float MoveSpeedIncreaseTime = 15.0f;     //속도 증가 쿨타임
     private float MoveSpeedIncreaseAmount = 1.2f;    //가속도
     
-    private float LaneMoveSpeed = 30.0f;
+    private float LaneMoveSpeed = 20.0f;
     private int DesiredLane = 1; // 0 = 좌측, 1 = 중앙, 2 = 우측
+
+    private AudioSource buteSound; // 짖는 사운드
+    private GameObject Frisbee; // 원반 오브젝트
+    private float startTime = 0, lastTime = 1.5f; // 원반 나오기까지 딜레이
+    private Vector3 currentPosition; // 원반 나오는 위치
 
     private void Start()
     {
         Controller = GetComponent<CharacterController>();
+        Frisbee = Resources.Load("Frisbee") as GameObject;
+        
+        
     }
 
     private void Update()
     {
         GameStart();
+        //transform.eulerAngles = new Vector3(270.0f, 0.0f, transform.rotation.z);
     }
 
     public void StartRunning()
@@ -90,7 +99,7 @@ public class PlayerController : MonoBehaviour
                 Destroy(hit.gameObject);
                 break;
         }
-        
+
         //switch (collision.gameObject.tag)
         //{
         //    case "Obstacle":
@@ -102,6 +111,20 @@ public class PlayerController : MonoBehaviour
         //        Destroy(collision.gameObject);
         //        break;
         //}
+    }
+
+    private void CreateFrisbee()
+    {
+        // 원반 생성 하는 함수 입니다.
+        // 개가 짖는 위치에 이 함수를 넣어주시면 됩니다.
+        //buteSound.Play(); 짖는 사운드
+        startTime += Time.deltaTime;
+        if (startTime >= lastTime)
+        {
+            startTime = 0f;
+            currentPosition = new Vector3(transform.position.x, 7, transform.position.z + 18);
+            GameObject.Instantiate(Frisbee, currentPosition, transform.rotation);
+        }
     }
 
     private void GameStart()
@@ -173,7 +196,7 @@ public class PlayerController : MonoBehaviour
         }
         
         MoveVector.y = VerticalVelocity;
-        MoveVector.z = MoveSpeed;
+        //MoveVector.z = MoveSpeed;
 
         Controller.Move(MoveVector * Time.deltaTime);
         
@@ -183,6 +206,7 @@ public class PlayerController : MonoBehaviour
             Dir.y = 0;
             transform.forward = Vector3.Lerp(transform.forward, Dir, TURN_SPEED);
         }
+
     }
 
     private void MoveLane(bool GoingRight)
@@ -202,7 +226,7 @@ public class PlayerController : MonoBehaviour
         {
             return true;
         }
-
+        
         return false;
     }
 }
