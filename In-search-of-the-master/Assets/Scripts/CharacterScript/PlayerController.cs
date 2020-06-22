@@ -221,7 +221,7 @@ public class PlayerController : MonoBehaviour
         }
         
         MoveVector.y = VerticalVelocity;
-        //MoveVector.z = MoveSpeed;
+        MoveVector.z = MoveSpeed;
 
         Controller.Move(MoveVector * Time.deltaTime);
         
