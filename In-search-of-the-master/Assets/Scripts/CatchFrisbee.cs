@@ -11,9 +11,11 @@ public class CatchFrisbee : MonoBehaviour
     private bool isCatch; // 플레이어가 잡았는지 여부
     private float startTime = 0f;
     private float lastTime = 1.5f; // 화면 중앙에 뜨는 문구의 시간
+    private float distance = 5f;
 
     private void Start()
     {
+        isCatch = false;
         text = GameObject.Find("FrisbeeUI").GetComponent<Text>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -27,19 +29,19 @@ public class CatchFrisbee : MonoBehaviour
             {
                 startTime = 0f;
                 text.text = " ";
-                isCatch = false;
+                Destroy(gameObject);
             }
         }
 
-        if (Vector3.Distance(player.transform.position, gameObject.transform.position) > 20f)
+        if (Vector3.Distance(player.transform.position, gameObject.transform.position) > distance && !isCatch)
         {
             // 플레이어와 거리가 멀어지면 사라짐
-            Destroy(gameObject);
             text.text = "MISS..";
             startTime += Time.deltaTime;
             if (startTime >= lastTime)
             {
                 text.text = " ";
+                Destroy(gameObject);
             }
         }
     }
@@ -52,7 +54,7 @@ public class CatchFrisbee : MonoBehaviour
             isCatch = true;
             GameManager.Instance.Coin += 30;
             GameManager.Instance.Score += 300;
-            Destroy(gameObject);
+            gameObject.transform.position = new Vector2(transform.position.x, transform.position.y - 100);
         }
     }
 }

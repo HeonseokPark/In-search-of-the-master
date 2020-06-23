@@ -133,13 +133,8 @@ public class PlayerController : MonoBehaviour
         // 원반 생성 하는 함수 입니다.
         // 개가 짖는 위치에 이 함수를 넣어주시면 됩니다.
         //buteSound.Play(); 짖는 사운드
-        startTime += Time.deltaTime;
-        if (startTime >= lastTime)
-        {
-            startTime = 0f;
-            currentPosition = new Vector3(transform.position.x, 7, transform.position.z + 18);
-            GameObject.Instantiate(Frisbee, currentPosition, transform.rotation);
-        }
+        currentPosition = new Vector3(transform.position.x, (float)0.8, transform.position.z + 4);
+        GameObject.Instantiate(Frisbee, currentPosition, transform.rotation);
     }
 
     private void GameStart()
@@ -232,6 +227,9 @@ public class PlayerController : MonoBehaviour
             transform.forward = Vector3.Lerp(transform.forward, Dir, TURN_SPEED);
         }
 
+        // 테스트 용
+        if (Input.GetKeyDown(KeyCode.Return))
+            CreateFrisbee();
     }
     
     //애니메이션 이벤트

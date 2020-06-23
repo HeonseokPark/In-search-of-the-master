@@ -302,6 +302,19 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 1572063229}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &150485519
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150485511}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.13172778, y: 0.09388061, z: 0.11272389}
+  m_Center: {x: -0.00032271445, y: 0.1730597, z: 0.1053748}
 --- !u!1 &225867738
 GameObject:
   m_ObjectHideFlags: 0
@@ -1660,11 +1673,21 @@ PrefabInstance:
       propertyPath: m_CullingMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3945221192099471896, guid: 0de161bbf2d8a09478a9741d0e3cd8d8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3945221192099471897, guid: 0de161bbf2d8a09478a9741d0e3cd8d8,
         type: 3}
       propertyPath: anim
       value: 
       objectReference: {fileID: 150485514}
+    - target: {fileID: 3945221192099471898, guid: 0de161bbf2d8a09478a9741d0e3cd8d8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3945221192099471899, guid: 0de161bbf2d8a09478a9741d0e3cd8d8,
         type: 3}
       propertyPath: m_Enabled
@@ -1679,6 +1702,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.y
       value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3945221192099471899, guid: 0de161bbf2d8a09478a9741d0e3cd8d8,
+        type: 3}
+      propertyPath: m_Height
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7226313558421876692, guid: 0de161bbf2d8a09478a9741d0e3cd8d8,
         type: 3}
@@ -1700,7 +1728,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -1.9994982
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3945221192099471898, guid: 0de161bbf2d8a09478a9741d0e3cd8d8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0de161bbf2d8a09478a9741d0e3cd8d8, type: 3}
 --- !u!1001 &1667506655
 PrefabInstance:
