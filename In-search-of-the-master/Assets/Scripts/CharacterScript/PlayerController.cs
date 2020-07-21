@@ -26,11 +26,9 @@ public class PlayerController : MonoBehaviour
     //Movement (임시)
     private CharacterController Controller;
     private float JumpForce = 1.3f;
-<<<<<<< Updated upstream
-    private float Gravity = 1.5f;
-=======
+    
     private float Gravity = 1.3f;
->>>>>>> Stashed changes
+
     private float VerticalVelocity;
     [SerializeField]
     private float MoveSpeed = 1.0f;
