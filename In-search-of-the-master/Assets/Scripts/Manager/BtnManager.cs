@@ -33,7 +33,7 @@ public class BtnManager : MonoBehaviour
                 isRoad = false;
             }
         }
-        countText.text = $"{(int)countNum}";
+        //countText.text = $"{(int)countNum}";
         lastTime = Time.realtimeSinceStartup - startTime;
         startTime = Time.realtimeSinceStartup;
     }
