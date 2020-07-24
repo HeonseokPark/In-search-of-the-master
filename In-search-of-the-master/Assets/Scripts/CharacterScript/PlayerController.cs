@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 
@@ -108,8 +109,10 @@ public class PlayerController : MonoBehaviour
         switch (hit.gameObject.tag)
         {
             case "Obstacle":
-                if (ItemManager.Instance.isShield == true)
+                if (ItemManager.Instance.isShield == false)
                     Crash();
+                hp -= hit.gameObject.GetComponent<ObstacleInfo>().damage;
+                Destroy(hit.gameObject);
                 break;
             case "Item":
                 ItemManager.Instance.CurrentItem(hit.gameObject.name);
@@ -143,6 +146,11 @@ public class PlayerController : MonoBehaviour
             GameObject.Instantiate(Frisbee, currentPosition, transform.rotation);
         }
     }
+    private void HeartImage()
+    {
+
+    }
+
 
     private void GameStart()
     {

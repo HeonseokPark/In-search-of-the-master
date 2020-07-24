@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dd15b6d04f4e8e346aeb5b66f6a0977f
+guid: 3bf8a9dfc812fa74ba224441f9a28435
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
@@ -39,14 +39,14 @@ ModelImporter:
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 25
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
