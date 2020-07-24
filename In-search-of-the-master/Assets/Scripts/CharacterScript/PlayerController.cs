@@ -16,9 +16,16 @@ public class PlayerController : MonoBehaviour
         set { hp = value; }
         get { return hp; }
     }
-    private float fevertime = 5;
 
-    private const float LANE_DISTANCE = 0.6f;
+    [SerializeField]
+    private float fevertime = 5;
+    private float feverspeed = 2;
+    private bool Isfever = false;
+    private float endTime;
+    private bool[] fevercheckitem = new bool[3] { false, false, false };
+
+
+    private const float LANE_DISTANCE = 0.8f;
     private const float TURN_SPEED = 0.0f;
 
     private bool _isRunning = false;
@@ -69,9 +76,75 @@ public class PlayerController : MonoBehaviour
         isSlideAnimHashKey = Animator.StringToHash("isSlide");
     }
 
+    #region Fever
+    private void OnTriggerEnter(Collider other)
+    {
+        switch(other.tag)
+        {
+            case "tennisball":
+                fevercheckitem[0] = true;
+                break;
+            case "magnatic":
+                fevercheckitem[1] = true;
+                break;
+            case "doll":
+                fevercheckitem[2] = true;
+                break;
+        }
+    }
+
+    void FeverCheck()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (!fevercheckitem[i])
+                return;
+        }
+
+        Fever();
+    }
+
+    public bool GetIsfever()
+    {
+        return Isfever;
+    }
+
+    void Fever()
+    {
+        if (!Isfever)
+        {
+            Isfever = true;
+            moveSpeed = 2;
+        }
+        Invoke("EndFever", fevertime);
+    }
+
+    void EndFever()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            fevercheckitem[i] = false;
+        }
+        MoveSpeed = 1;
+        Isfever = false;
+    }
+
+    #endregion
+
+    #region Death
+    void Death()
+    {
+        if(hp == 0)
+            GameManager.Instance.GameOver();
+    }
+
+    #endregion
+
     private void Update()
     {
         GameStart();
+        FeverCheck();
+        Death();
         //transform.eulerAngles = new Vector3(270.0f, 0.0f, transform.rotation.z);
     }
 
@@ -266,4 +339,5 @@ public class PlayerController : MonoBehaviour
         
         return false;
     }
+
 }
