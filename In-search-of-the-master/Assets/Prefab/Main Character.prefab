@@ -226,9 +226,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3945221192099471892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 013dfa309eb5a35428c153caa053a996, type: 3}
+  m_Script: {fileID: 11500000, guid: 147ed4f1e7d329d4e9da196ac6337d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  fevertime: 5
+  MoveSpeed: 1
 --- !u!114 &3945221192099471897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,10 +241,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3945221192099471892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4dc1760b9541f345aef03b19caf471c, type: 3}
+  m_Script: {fileID: 11500000, guid: f0846797ce9a5374db124a5bd4c0610d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 1
 --- !u!1 &4009551637368145794
 GameObject:
   m_ObjectHideFlags: 0
