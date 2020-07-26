@@ -63,4 +63,12 @@ public class BtnManager : MonoBehaviour
         pauseMenuUI.gameObject.SetActive(false);
         countText.gameObject.SetActive(true);
     }
+
+    public void restartButton()
+    {
+        // 게임 재시작 부문
+        GameManager.Instance.Coin = 0;
+        GameManager.Instance.Score = 0;
+        SceneManager.LoadScene("MAP_01_A");
+    }
 }

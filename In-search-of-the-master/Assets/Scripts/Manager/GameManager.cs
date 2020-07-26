@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     public Text CoinText;
     public float Coin;
     public int CoinPlus = 1;
+    public Text ScoreCount;
+    public Text CoinCount;
+    public GameObject GameoverUI;
 
     public float ScoreTimer;
     public float IncreaseTime;
@@ -31,6 +34,7 @@ public class GameManager : MonoBehaviour
         UpdateScore();
         ScoreTimer = 0.0f;
         IncreaseTime = 0.5f;
+        GameoverUI.SetActive(false);
     }
 
     private void Update()
@@ -69,7 +73,10 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        
+        Time.timeScale = 0;
+        ScoreCount.text += Score;
+        CoinCount.text += Coin;
+        GameoverUI.SetActive(true);
     }
 
 }
