@@ -81,6 +81,10 @@ public class GameManager : MonoBehaviour
         CoinCount.text = Coin.ToString();
         GameoverUI.SetActive(true);
         HighScore = Score;
+
+        // 점수, 코인 초기화
+        Score = 0;
+        Coin = 0;
     }
 
 }

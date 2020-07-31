@@ -6,9 +6,15 @@ using UnityEngine.UI;
 
 public class BtnManager : MonoBehaviour
 {
+    // 메인화면 내 사용 변수
+    public GameObject shopUI;
+    public GameObject mainUI;
+    public GameObject optionUI;
+
+    // 인게임 내 사용 변수
     public GameObject pauseMenuUI; // 일시정지 했을 때 나오는 UI
     public Text countText; // 게임 재개를 눌렀을 때 나오는 카운팅 UI
-    
+
     bool isPause, isRoad;
     public float countNum;
     float startTime;
@@ -51,8 +57,7 @@ public class BtnManager : MonoBehaviour
 
     public void menuButton()
     {
-        // 메뉴 씬 전환 부문
-        //SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Main");
     }
 
     public void reloadButton()
@@ -66,9 +71,36 @@ public class BtnManager : MonoBehaviour
 
     public void restartButton()
     {
-        // 게임 재시작 부문
+        // 게임 재시작
         GameManager.Instance.Coin = 0;
         GameManager.Instance.Score = 0;
         SceneManager.LoadScene("MAP_01_A");
+    }
+
+    public void startButton()
+    {
+        SceneManager.LoadScene("MAP_01_A");
+    }
+
+    public void shopButton()
+    {
+        shopUI.SetActive(true);
+        mainUI.SetActive(false);
+    }
+
+    public void optionButton()
+    {
+        optionUI.SetActive(true);
+    }
+
+    public void backShopButton()
+    {
+        shopUI.SetActive(false);
+        mainUI.SetActive(true);
+    }
+
+    public void backOptionButton()
+    {
+        optionUI.SetActive(false);
     }
 }

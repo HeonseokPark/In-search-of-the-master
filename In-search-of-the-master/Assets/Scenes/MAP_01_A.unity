@@ -2150,6 +2150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22727e33976aea4fa62963bbdcb61b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shopUI: {fileID: 0}
+  mainUI: {fileID: 0}
+  optionUI: {fileID: 0}
   pauseMenuUI: {fileID: 3281713456679001274}
   countText: {fileID: 6470279633016261103}
   countNum: 0
