@@ -6765,10 +6765,55 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1760956038840774062, guid: ff05c397cdf941a4c9ec2bb00f3224a5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823519364112806379, guid: ff05c397cdf941a4c9ec2bb00f3224a5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599593162495468398, guid: ff05c397cdf941a4c9ec2bb00f3224a5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 4553603398042850149, guid: ff05c397cdf941a4c9ec2bb00f3224a5,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635021010623743868, guid: ff05c397cdf941a4c9ec2bb00f3224a5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5832517426428485276, guid: ff05c397cdf941a4c9ec2bb00f3224a5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6033355145895526268, guid: ff05c397cdf941a4c9ec2bb00f3224a5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6471624191002430704, guid: ff05c397cdf941a4c9ec2bb00f3224a5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 6759898056737220840, guid: ff05c397cdf941a4c9ec2bb00f3224a5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7458078783076573787, guid: ff05c397cdf941a4c9ec2bb00f3224a5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     - target: {fileID: 8056241775763844263, guid: ff05c397cdf941a4c9ec2bb00f3224a5,
         type: 3}
