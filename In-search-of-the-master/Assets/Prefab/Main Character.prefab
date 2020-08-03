@@ -104,7 +104,6 @@ GameObject:
   - component: {fileID: 3945221192099471896}
   - component: {fileID: 3945221192099471895}
   - component: {fileID: 3945221192099471894}
-  - component: {fileID: 3945221192099471897}
   m_Layer: 0
   m_Name: Main Character
   m_TagString: Player
@@ -232,18 +231,6 @@ MonoBehaviour:
   anim: {fileID: 0}
   fevertime: 5
   MoveSpeed: 1
---- !u!114 &3945221192099471897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3945221192099471892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0846797ce9a5374db124a5bd4c0610d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4009551637368145794
 GameObject:
   m_ObjectHideFlags: 0
