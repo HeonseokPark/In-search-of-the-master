@@ -24,6 +24,12 @@ public class GameManager : MonoBehaviour
     public Text ScoreCount;
     public Text CoinCount;
     public GameObject GameoverUI;
+    #region HP
+    [SerializeField]
+    private Sprite[] HP = new Sprite[2];
+    [SerializeField]
+    private Image[] HPUI = new Image[3];
+    #endregion
     static public float HighScore;
 
     public float ScoreTimer;
@@ -59,6 +65,14 @@ public class GameManager : MonoBehaviour
                 Score += 8;
             }
 
+        }
+    }
+
+    public void SetHP()
+    {
+        for(int i =0; i < 3; i++)
+        {
+            HPUI[i].sprite = Controller.Hp < i + 1 ? HP[0] : HP[1];
         }
     }
 

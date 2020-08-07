@@ -185,6 +185,7 @@ public class PlayerController : MonoBehaviour
                 if (ItemManager.Instance.isShield == false)
                     Crash();
                 hp -= hit.gameObject.GetComponent<ObstacleInfo>().damage;
+                GameManager.Instance.SetHP();
                 Destroy(hit.gameObject);
                 break;
             case "Item":
