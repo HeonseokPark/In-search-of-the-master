@@ -77,6 +77,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SetHP()
+    {
+        for(int i =0; i < 3; i++)
+        {
+            HPUI[i].sprite = Controller.Hp < i + 1 ? HP[0] : HP[1];
+        }
+    }
+
     public void GetCoin()
     {
         Coin += CoinPlus;
