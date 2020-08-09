@@ -10,6 +10,11 @@ public class BtnManager : MonoBehaviour
     public GameObject shopUI;
     public GameObject mainUI;
     public GameObject optionUI;
+    public GameObject buyUI;
+    public GameObject buyText;
+
+    public Text coinText;
+    public Text shopCoinText;
 
     // 인게임 내 사용 변수
     public GameObject pauseMenuUI; // 일시정지 했을 때 나오는 UI
@@ -19,11 +24,15 @@ public class BtnManager : MonoBehaviour
     public float countNum;
     float startTime;
     float lastTime;
+    
+    private PlayerController Controller;
+    
 
     private void Start()
     {
         isPause = false; isRoad = false;
         startTime = Time.realtimeSinceStartup;
+        Controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     private void Update()
@@ -42,6 +51,14 @@ public class BtnManager : MonoBehaviour
         //countText.text = $"{(int)countNum}";
         lastTime = Time.realtimeSinceStartup - startTime;
         startTime = Time.realtimeSinceStartup;
+
+        if (SceneManager.GetActiveScene().name == "MainScene")
+        {
+            if (Input.GetMouseButton(0) && buyText.activeSelf)
+            {
+                buyText.SetActive(false);
+            }
+        }
     }
 
     public void pauseButton()
@@ -57,7 +74,7 @@ public class BtnManager : MonoBehaviour
 
     public void menuButton()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene(0);
     }
 
     public void reloadButton()
@@ -74,12 +91,13 @@ public class BtnManager : MonoBehaviour
         // 게임 재시작
         GameManager.Instance.Coin = 0;
         GameManager.Instance.Score = 0;
-        SceneManager.LoadScene("MAP_01_A");
+        SceneManager.LoadScene(1);
+        Controller.Hp = 3;
     }
 
     public void startButton()
     {
-        SceneManager.LoadScene("MAP_01_A");
+        SceneManager.LoadScene(1);
     }
 
     public void shopButton()
@@ -102,5 +120,21 @@ public class BtnManager : MonoBehaviour
     public void backOptionButton()
     {
         optionUI.SetActive(false);
+    }
+
+    public void buy()
+    {
+        buyUI.SetActive(true);
+    }
+
+    public void notBuyItem()
+    {
+        buyUI.SetActive(false);
+    }
+
+    public void buyItem()
+    {
+        buyText.SetActive(true);
+        buyUI.SetActive(false);
     }
 }

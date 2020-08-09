@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.UI;
-
-
+using UnityEngine.UIElements;
 
 
 public class PlayerController : MonoBehaviour
@@ -17,7 +16,7 @@ public class PlayerController : MonoBehaviour
         set { hp = value; }
         get { return hp; }
     }
-
+    
     [SerializeField]
     private float fevertime = 5;
     private float feverspeed = 2;
@@ -29,7 +28,7 @@ public class PlayerController : MonoBehaviour
     private const float LANE_DISTANCE = 0.8f;
     private const float TURN_SPEED = 0.0f;
 
-    private bool _isRunning = false;
+    public bool _isRunning = false;
 
     //Movement (임시)
     private CharacterController Controller;
@@ -135,8 +134,10 @@ public class PlayerController : MonoBehaviour
     #region Death
     void Death()
     {
-        if(hp == 0)
+        if (hp == 0)
+        {
             GameManager.Instance.GameOver();
+        }
     }
 
     #endregion
@@ -147,6 +148,10 @@ public class PlayerController : MonoBehaviour
         FeverCheck();
         Death();
         //transform.eulerAngles = new Vector3(270.0f, 0.0f, transform.rotation.z);
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            Hp -= 1;
+        }
     }
 
     public void StartRunning()
@@ -185,6 +190,7 @@ public class PlayerController : MonoBehaviour
                 if (ItemManager.Instance.isShield == false)
                     Crash();
                 hp -= hit.gameObject.GetComponent<ObstacleInfo>().damage;
+                GameManager.Instance.SetHP();
                 Destroy(hit.gameObject);
                 break;
             case "Item":
@@ -225,7 +231,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void GameStart()
+    public void GameStart()
     {
         
         //애니메이션 이벤트

@@ -107,6 +107,7 @@ public class ItemManager : MonoBehaviour
                 itemlist = ItemList.Item_Heal;
                 if (player.Hp < 3)
                     player.Hp += 1; //회복
+                GameManager.Instance.SetHP();
                 itemlist = ItemList.None;
                 break;
             case "Item_DoubleCoin":
