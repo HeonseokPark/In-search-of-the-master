@@ -92,6 +92,7 @@ public class BtnManager : MonoBehaviour
         GameManager.Instance.Coin = 0;
         GameManager.Instance.Score = 0;
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
         Controller.Hp = 3;
     }
 
