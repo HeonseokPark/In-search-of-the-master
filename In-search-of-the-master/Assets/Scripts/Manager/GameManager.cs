@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using InspectorGadgets.Editor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -13,7 +15,7 @@ public class GameManager : MonoBehaviour
     }
     
     private PlayerController Controller;
-    private bool _isGameStarted = false;
+    public bool _isGameStarted = false;
     
     // UI, UI 필드
     public Text ScoreText;
@@ -24,11 +26,17 @@ public class GameManager : MonoBehaviour
     public Text ScoreCount;
     public Text CoinCount;
     public GameObject GameoverUI;
+    #region HP
+    [SerializeField]
+    private Sprite[] HP = new Sprite[2];
+    [SerializeField]
+    private Image[] HPUI = new Image[3];
+    #endregion
     static public float HighScore;
 
     public float ScoreTimer;
     public float IncreaseTime;
-    private void Awake()
+    private void Start()
     {
         Instance = this;
         Controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -42,7 +50,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (MobileInput.Instance.tap && _isGameStarted == false)
+        if (SceneManager.GetActiveScene().name == "MAP_01_A" && MobileInput.Instance.tap && _isGameStarted == false)
         {
             _isGameStarted = true;
             Controller.StartRunning();
@@ -58,7 +66,14 @@ public class GameManager : MonoBehaviour
                 ScoreTimer = 0.0f;
                 Score += 8;
             }
+        }
+    }
 
+    public void SetHP()
+    {
+        for(int i =0; i < 3; i++)
+        {
+            HPUI[i].sprite = Controller.Hp < i + 1 ? HP[0] : HP[1];
         }
     }
 
@@ -76,12 +91,14 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        _isGameStarted = false;
+        Controller._isRunning = false;
         Time.timeScale = 0;
         ScoreCount.text = Score.ToString();
         CoinCount.text = Coin.ToString();
         GameoverUI.SetActive(true);
         HighScore = Score;
-
+        
         // 점수, 코인 초기화
         Score = 0;
         Coin = 0;

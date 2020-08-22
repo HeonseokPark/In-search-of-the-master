@@ -24,11 +24,15 @@ public class BtnManager : MonoBehaviour
     public float countNum;
     float startTime;
     float lastTime;
+    
+    private PlayerController Controller;
+    
 
     private void Start()
     {
         isPause = false; isRoad = false;
         startTime = Time.realtimeSinceStartup;
+        Controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     private void Update()
@@ -70,7 +74,7 @@ public class BtnManager : MonoBehaviour
 
     public void menuButton()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene(0);
     }
 
     public void reloadButton()
@@ -87,12 +91,14 @@ public class BtnManager : MonoBehaviour
         // 게임 재시작
         GameManager.Instance.Coin = 0;
         GameManager.Instance.Score = 0;
-        SceneManager.LoadScene("MAP_01_A");
+        SceneManager.LoadScene(1);
+        Time.timeScale = 1;
+        Controller.Hp = 3;
     }
 
     public void startButton()
     {
-        SceneManager.LoadScene("MAP_01_A");
+        SceneManager.LoadScene(1);
     }
 
     public void shopButton()
