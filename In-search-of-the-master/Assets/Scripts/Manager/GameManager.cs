@@ -61,8 +61,9 @@ public class GameManager : MonoBehaviour
             ScoreText.text = "Score : " + Score;
             CoinText.text = "Coin : " + Coin;
             ScoreTimer += Time.deltaTime;
-            if (ScoreTimer > IncreaseTime)
+            if (ScoreTimer > IncreaseTime + 1)
             {
+                ScoreTimer = IncreaseTime;
                 ScoreTimer = 0.0f;
                 Score += 8;
             }
